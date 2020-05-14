@@ -1,25 +1,49 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/home/home",
+    "pages/order/order",
+    "pages/cart/cart",
+    "pages/me/me"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "商城小应用",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#5D5F64",
+    "selectedColor": "#f1e05a",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "商城",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-sel.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-sel.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/cart.png",
+        "selectedIconPath": "images/cart-sel.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "个人主页",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me-sel.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
