@@ -1,6 +1,6 @@
 // pages/home/home.js
 const db = require("../../utils/db");
-const util = require("../../utils/util");
+const util = require("../../utils/util.js");
 
 // console.log(db)
 Page({

@@ -18,11 +18,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onTapLogin: event => {
+    onTapLogin(event) {
       const loginDetail = {
         userInfo: event.detail.userInfo
       }
-      this.triggerEvent('onLogin', loginDetail)
+    this.triggerEvent('onLogin', loginDetail)
     },
   }
 })

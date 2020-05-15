@@ -1,7 +1,6 @@
 // pages/detail/detail.js
-const db = require("../../utils/db");
-const util = require("../../utils/util");
-
+const db = require("../../utils/db.js");
+const util = require("../../utils/util.js");
 
 Page({
   /**
@@ -37,6 +36,40 @@ Page({
         console.log(err);
         wx.hideLoading();
         setTimeout(() => wx.navigateBack(), 2000);
+      });
+  },
+
+  buy() {
+    wx.showLoading({
+      title: "提交订单...",
+    });
+    const productToBuy = Object.assign(
+      {
+        count: 1,
+      },
+      this.data.product
+    );
+    productToBuy.productId = productToBuy._id;
+
+    db.addToOrder({
+      list: [productToBuy],
+    })
+      .then((result) => {
+        wx.hideLoading();
+        const data = result.result;
+        if (data) {
+          wx.showToast({
+            title: "成功",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        wx.hideLoading();
+        wx.showToast({
+          icon: "none",
+          title: "提交失败",
+        });
       });
   },
 
