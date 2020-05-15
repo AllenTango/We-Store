@@ -1,4 +1,6 @@
 // pages/cart/cart.js
+const util = require("../../utils/util.js")
+
 Page({
 
   /**
@@ -26,7 +28,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    util.getUserInfo().then(userInfo => {
+      this.setData({
+        userInfo
+      })
+    })
+  },
 
+  onTapLogin(event) {
+    this.setData({
+      userInfo: event.detail.userInfo,
+    });
   },
 
   /**

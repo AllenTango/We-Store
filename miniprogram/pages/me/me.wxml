@@ -1,14 +1,7 @@
 <image class="bg" src="/images/bg.png"></image>
 
 <view wx:if="{{!userInfo}}">
-    <view class="login-card">
-        <view class="login-head"></view>
-        <view class="login-info">
-          <view class="login-text">没有登录</view>
-          <view class="login-tips">请点击登录，登录商城</view>
-        </view>
-      </view>
-      <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">登录</button>
+    <login bindonLogin="onTapLogin"></login>
 </view>
 
 <view class="user-card" wx:else>
