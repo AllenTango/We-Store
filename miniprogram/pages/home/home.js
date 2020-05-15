@@ -1,8 +1,8 @@
 // pages/home/home.js
-const db = wx.cloud.database({
-  env: "dev-pupws",
-});
+const db = require("../../utils/db");
+const util = require("../../utils/util");
 
+// console.log(db)
 Page({
   /**
    * Page initial data
@@ -21,25 +21,17 @@ Page({
     wx.showLoading({
       title: "正在加载...",
     });
-    db.collection("product")
-      .get()
+    db.getProductList()
       .then((res) => {
         // console.log(res);
         wx.hideLoading();
         const productList = res.data;
         productList.forEach((product) => {
-          product.price = parseFloat(
-            Math.round(product.price * 100) / 100
-          ).toFixed(2);
-          // wx.cloud
-          //   .getTempFileURL({ fileList: [product.image] })
-          //   .then( ({fileList}) => product.image = fileList[0].tempFileURL)
-          //   .catch((err) => console.log(err));
+          product.price = util.formatPrice(product.price);
         });
-        console.log(productList[0].image)
         if (productList.length) {
           this.setData({
-            productList
+            productList,
           });
         }
       })
