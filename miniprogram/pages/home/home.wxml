@@ -10,9 +10,7 @@
     <image class="hot-name-line" src="/images/line-red.png"></image>
   </view>
   <image class="hot-info" src="/images/discount.png"></image>
-  <!-- <image wx:if="{{productList[0].image}}" class="hot-image" src="{{ productList[0].image}} "></image> -->
-  <image class="hot-image" src="cloud://dev-pupws.6465-dev-pupws-1301913144/products/product10.jpg"></image>
-
+  <image class="hot-image" src="{{ productList[0].image }}"></image>
 </navigator>
 <view class="list-title">
   <image class="list-title-line" src="/images/line-black.png"></image>
