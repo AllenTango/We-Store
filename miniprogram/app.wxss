@@ -9,4 +9,5 @@ page {
   top: 0;
   height: 144rpx;
   z-index: -1;
+  width: 100vw;
 }

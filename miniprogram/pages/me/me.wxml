@@ -1,2 +1,30 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<image class="bg" src="/images/bg.png"></image>
+
+<view wx:if="{{!userInfo}}">
+    <view class="login-card">
+        <view class="login-head"></view>
+        <view class="login-info">
+          <view class="login-text">没有登录</view>
+          <view class="login-tips">请点击登录，登录商城</view>
+        </view>
+      </view>
+      <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">登录</button>
+</view>
+
+<view class="user-card" wx:else>
+    <view class="user-info">
+        <image class="user-head" src="{{userInfo.avatarUrl}}"></image>
+        <view class="user-name">{{userInfo.nickName}}</view>
+      </view>
+      <view class="user-split"></view>
+      <view class="user-options">
+        <view class="option" bindtap="onTapAddress">
+          <view class="option-title">地址</view>
+          <image class="option-arrow" src="/images/grey-arrow.png"></image>
+        </view>
+        <view class="option" bindtap="onTapService">
+          <view class="option-title">联系方式</view>
+          <image class="option-arrow" src="/images/grey-arrow.png"></image>
+        </view>
+      </view>
+</view>

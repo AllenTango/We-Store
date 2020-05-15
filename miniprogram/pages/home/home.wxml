@@ -1,4 +1,4 @@
-<image src="/images/bg.png" class="bg" style="width: 100vw;"></image>
+<image src="/images/bg.png" class="bg"></image>
 <navigator class="hot-card" url="/pages/detail/detail?id={{productList[0]._id}}">
   <view class="hot-name">
     <image class="hot-name-line" src="/images/line-red.png"></image>
