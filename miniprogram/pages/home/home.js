@@ -24,24 +24,22 @@ Page({
     db.collection("product")
       .get()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         wx.hideLoading();
         const productList = res.data;
         productList.forEach((product) => {
           product.price = parseFloat(
             Math.round(product.price * 100) / 100
           ).toFixed(2);
-          wx.cloud
-            .getTempFileURL({ fileList: [product.image] })
-            .then(({ fileList }) => {
-              product.image = fileList[0].tempFileURL;
-            })
-            .catch((err) => console.log(err));
+          // wx.cloud
+          //   .getTempFileURL({ fileList: [product.image] })
+          //   .then( ({fileList}) => product.image = fileList[0].tempFileURL)
+          //   .catch((err) => console.log(err));
         });
-
+        console.log(productList[0].image)
         if (productList.length) {
           this.setData({
-            productList,
+            productList
           });
         }
       })
