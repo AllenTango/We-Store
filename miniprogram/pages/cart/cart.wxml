@@ -11,7 +11,7 @@
 <view wx:else>
   <view class="cart-top">
     <view class="cart-total">
-      <view class="cart-check-wrapper white {{ isSelectAllChecked ? 'check' : '' }}">
+      <view bindtap="onTapCheck" data-id="selectAll" class="cart-check-wrapper white {{ isSelectAllChecked ? 'check' : '' }}">
         <image class="cart-check" src="/images/check.png" wx:if="{{ isSelectAllChecked }}"></image>
       </view>
       <view class="cart-total-text">选择全部</view>
@@ -22,7 +22,7 @@
 
 <scroll-view class="product-list" scroll-y scroll-with-animation enable-back-to-top>
   <view class="product-card" wx:for="{{ cartList }}" wx:key="productId">
-    <view class="cart-check-wrapper {{ cartCheckMap[item.productId] ? 'check' : ' '}}">
+    <view bindtap="onTapCheck" data-id="{{item.productId}}" class="cart-check-wrapper {{ cartCheckMap[item.productId] ? 'check' : ' '}}">
       <image class="cart-check" src="/images/check.png" wx:if="{{ cartCheckMap[item.productId] }}"></image>
     </view>
     <image class="product-img" mode="aspectFit" src="{{ item.image }}"></image>
@@ -41,7 +41,7 @@
 
 <view class="cart-checkout">
     <view class="cart-total">
-      <view class="cart-check-wrapper {{isSelectAllChecked ? 'check' : ''}}">
+      <view bindtap="onTapCheck" data-id="selectAll" class="cart-check-wrapper {{isSelectAllChecked ? 'check' : ''}}">
         <image class="cart-check" src="/images/check.png" wx:if="{{isSelectAllChecked}}"></image>
       </view>
       <view class="cart-total-text">选择全部</view>

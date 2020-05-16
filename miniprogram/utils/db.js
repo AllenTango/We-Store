@@ -65,4 +65,20 @@ module.exports = {
         return {};
       });
   },
+  getCart() {
+    return util
+      .isAuthenticated()
+      .then(() => {
+        return wx.cloud.callFunction({
+          name: "getCart",
+        });
+      })
+      .catch(() => {
+        wx.showToast({
+          icon: "none",
+          title: "请先登录",
+        });
+        return {};
+      });
+  },
 };
