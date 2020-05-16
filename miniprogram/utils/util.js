@@ -6,7 +6,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       this.isAuthenticated().then(() => {
         wx.getUserInfo({
-          success(res) {
+          success: res => {
             resolve(res.userInfo);
           },
         });
@@ -16,13 +16,15 @@ module.exports = {
   isAuthenticated() {
     return new Promise((resolve, reject) => {
       wx.getSetting({
-        success(res) {
-          if (res.authSetting["scope.uesrInfo"] === true) {
+        success: res => {
+          const auth = res.authSetting["scope.userInfo"]
+          if (auth === true) {
             resolve();
           } else {
-            reject();
+            reject("用户未授权");
           }
         },
+        fail: () => console.log("请求失败")
       });
     });
   },

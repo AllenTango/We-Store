@@ -22,7 +22,7 @@ Component({
       const loginDetail = {
         userInfo: event.detail.userInfo
       }
-    this.triggerEvent('onLogin', loginDetail)
+      this.triggerEvent('onLogin', loginDetail)
     },
   }
 })

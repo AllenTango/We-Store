@@ -73,7 +73,7 @@ Page({
         cartList: data
       })
     }).catch(err => {
-      consolelog(err)
+      console.log(err)
       wx.hideLoading()
       wx.showToast({
         icon: 'none',

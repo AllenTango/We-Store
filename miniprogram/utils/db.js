@@ -24,7 +24,8 @@ module.exports = {
           data,
         });
       })
-      .catch(() => {
+      .catch( err => {
+        console.log(err)
         wx.showToast({
           icon: "none",
           title: "请先登录",
