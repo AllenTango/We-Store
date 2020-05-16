@@ -32,6 +32,23 @@ module.exports = {
         return {};
       });
   },
+  addToCart(data) {
+    return util
+      .isAuthenticated()
+      .then(() => {
+        return wx.cloud.callFunction({
+          name: "addToCart",
+          data,
+        });
+      })
+      .catch(() => {
+        wx.showToast({
+          icon: "none",
+          title: "请先登录",
+        });
+        return {};
+      });
+  },
   getOrders() {
     return util
       .isAuthenticated()

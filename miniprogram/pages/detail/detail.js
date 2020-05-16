@@ -6,7 +6,9 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    userInfo: true
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -54,6 +56,30 @@ Page({
     db.addToOrder({
       list: [productToBuy],
     })
+      .then((result) => {
+        wx.hideLoading();
+        const data = result.result;
+        if (data) {
+          wx.showToast({
+            title: "成功",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        wx.hideLoading();
+        wx.showToast({
+          icon: "none",
+          title: "提交失败",
+        });
+      });
+  },
+
+  addToCart() {
+    wx.showLoading({
+      title: "提交订单...",
+    });
+    db.addToCart(this.data.product)
       .then((result) => {
         wx.hideLoading();
         const data = result.result;
