@@ -1,24 +1,24 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk')
+const cloud = require("wx-server-sdk");
 
-cloud.init()
+cloud.init();
 
-const db = cloud.database()
+const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-  const user = wxContext.OPENID
-  
-  const productList = event.list || []
+  const wxContext = cloud.getWXContext();
+  const user = wxContext.OPENID;
 
-  await db.collection('order').add({
+  const productList = event.list || [];
+
+  await db.collection("order").add({
     data: {
       user,
       createTime: +new Date(),
-      productList
-    }
-  })
-  
-  return {}
-}
+      productList,
+    },
+  });
+
+  return {};
+};

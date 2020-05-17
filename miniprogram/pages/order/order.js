@@ -25,7 +25,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getOrders();
     util
       .getUserInfo()
       .then((userInfo) => {
@@ -36,6 +35,7 @@ Page({
       .catch((err) => {
         console.log("没有授权");
       });
+    this.getOrders();
     this.data.orderList.forEach((order) => {
       order.productList.forEach(
         (product) => (product.price = util.formatPrice(product.price))
@@ -58,9 +58,9 @@ Page({
     });
 
     db.getOrders()
-      .then((result) => {
+      .then(({result}) => {
         wx.hideLoading();
-        const data = result.data;
+        const data = result;
         if (data) {
           this.setData({
             orderList: data,

@@ -16,36 +16,39 @@
       </view>
       <view class="cart-total-text">选择全部</view>
     </view>
-    <view class="cart-edit">{{ isCartEdit ? "完成" : "编辑" }}</view>
+    <view class="cart-edit" bindtap="onTapEditCart">{{ isCartEdit ? "完成" : "编辑" }}</view>
   </view>
-</view>
 
-<scroll-view class="product-list" scroll-y scroll-with-animation enable-back-to-top>
-  <view class="product-card" wx:for="{{ cartList }}" wx:key="productId">
-    <view bindtap="onTapCheck" data-id="{{item.productId}}" class="cart-check-wrapper {{ cartCheckMap[item.productId] ? 'check' : ' '}}">
-      <image class="cart-check" src="/images/check.png" wx:if="{{ cartCheckMap[item.productId] }}"></image>
-    </view>
-    <image class="product-img" mode="aspectFit" src="{{ item.image }}"></image>
-    <view class="product-info">
-      <view class="product-name">{{ item.name }}</view>
-      <view class="product-price">$ {{ item.price }}</view>
-      <view class="product-count-edit" wx:if="{{ isCartEdit }}">
-        <view class="count-minus">-</view>
-        <view class="count-now">{{ item.count }}</view>
-        <view class="count-add">+</view>
+  <scroll-view class="product-list" scroll-y scroll-with-animation enable-back-to-top>
+    <view class="product-card" wx:for="{{ cartList }}" wx:key="productId">
+      <view bindtap="onTapCheck" data-id="{{item.productId}}" class="cart-check-wrapper {{ cartCheckMap[item.productId] ? 'check' : ' '}}">
+        <image class="cart-check" src="/images/check.png" wx:if="{{ cartCheckMap[item.productId] }}"></image>
       </view>
-      <view class="product-count" wx:else>x {{ item.count }}</view>
+      <image class="product-img" mode="aspectFit" src="{{ item.image }}"></image>
+      <view class="product-info">
+        <view class="product-name">{{ item.name }}</view>
+        <view class="product-price">$ {{ item.price }}</view>
+        <view class="product-count-edit" wx:if="{{ isCartEdit }}">
+          <view class="count-minus" bindtap="changeCartProductCount" data-type="minus" data-id="{{item.productId}}">-</view>
+          <view class="count-now">{{ item.count }}</view>
+          <view class="count-add" bindtap="changeCartProductCount" data-type="add" data-id="{{item.productId}}">+</view>
+        </view>
+        <view class="product-count" wx:else>x {{ item.count }}</view>
+      </view>
     </view>
-  </view>
-</scroll-view>
+  </scroll-view>
 
-<view class="cart-checkout">
+  <view class="cart-checkout">
     <view class="cart-total">
       <view bindtap="onTapCheck" data-id="selectAll" class="cart-check-wrapper {{isSelectAllChecked ? 'check' : ''}}">
         <image class="cart-check" src="/images/check.png" wx:if="{{isSelectAllChecked}}"></image>
       </view>
       <view class="cart-total-text">选择全部</view>
     </view>
-    <view class="cart-checkout-text"><text>总计</text><text class="cart-checkout-now">$ {{cartTotal}}</text></view>
+    <view class="cart-checkout-text">
+      <text>总计</text>
+      <text class="cart-checkout-now">$ {{cartTotal}}</text>
+    </view>
     <view class="pay-btn {{cartTotal>0 ? 'pay-avalible' : ''}}">结算</view>
   </view>
+</view>

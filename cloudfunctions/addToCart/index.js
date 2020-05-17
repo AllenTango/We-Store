@@ -9,7 +9,7 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
   const user = wxContext.OPENID;
-  const productId = event.id;
+  const productId = event._id;
 
   const cartRes = await db
     .collection("cart")
