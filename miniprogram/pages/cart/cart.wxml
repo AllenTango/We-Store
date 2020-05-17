@@ -49,6 +49,6 @@
       <text>总计</text>
       <text class="cart-checkout-now">$ {{cartTotal}}</text>
     </view>
-    <view class="pay-btn {{cartTotal>0 ? 'pay-avalible' : ''}}">结算</view>
+    <view bindtap="onTapCheckout" class="pay-btn {{cartTotal>0 ? 'pay-avalible' : ''}}">结算</view>
   </view>
 </view>

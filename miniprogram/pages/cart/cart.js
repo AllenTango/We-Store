@@ -199,6 +199,60 @@ Page({
       });
   },
 
+  onTapCheckout() {
+    if (this.data.cartTotal == 0) {
+      // 此处不用 ===
+      wx.showToast({
+        icon: "none",
+        title: "请选择商品",
+      });
+      return;
+    }
+
+    wx.showLoading({
+      title: "正在提交...",
+    });
+
+    const cartCheckMap = this.data.cartCheckMap;
+    const cartList = this.data.cartList;
+    const productsToCheckout = cartList.filter(
+      (product) => cartCheckMap[product.productId]
+    );
+    const cartToUpdate = cartList.filter(
+      (product) => !cartCheckMap[product.productId]
+    );
+
+    db.addToOrder({
+      list: productsToCheckout,
+      isCheckout: true,
+    })
+      .then((result) => {
+        wx.hideLoading();
+
+        const data = result.result; // 传回的是空对象哦
+        if (data) {
+          wx.showToast({
+            icon: "",
+            title: "成功",
+          });
+
+          this.setData({
+            cartList: cartToUpdate,
+          });
+
+          this.getCart();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        wx.hideLoading();
+
+        wx.showToast({
+          icon: "none",
+          title: "提交失败",
+        });
+      });
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
