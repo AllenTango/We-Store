@@ -45,34 +45,81 @@ Page({
       title: "上传中...",
     });
 
-    db.addReview({
-      username: this.data.userInfo.nikeName,
-      avatar: this.data.userInfo.avatarUrl,
-      content,
-      productId: this.data.product.productId,
-    })
-      .then((result) => {
-        wx.hideLoading();
-
-        const data = result.result;
-
-        if (data) {
+    this.uploadImage(images => {
+      db.addReview({
+        username: this.data.userInfo.nikeName,
+        avatar: this.data.userInfo.avatarUrl,
+        content,
+        productId: this.data.product.productId,
+        images,
+      })
+        .then((result) => {
+          wx.hideLoading();
+  
+          const data = result.result;
+  
+          if (data) {
+            wx.showToast({
+              icon: "none",
+              title: "成功",
+            });
+          }
+  
+          setTimeout(() => wx.navigateBack(), 1500);
+        })
+        .catch((err) => {
+          console.log(err);
+          wx.hideLoading();
           wx.showToast({
             icon: "none",
-            title: "成功",
+            title: "提交失败",
           });
-        }
-
-        setTimeout(() => wx.navigateBack(), 1500);
-      })
-      .catch((err) => {
-        console.log(err);
-        wx.hideLoading();
-        wx.showToast({
-          icon: "none",
-          title: "提交失败",
         });
-      });
+    })
+  },
+
+  chooseImage() {
+    wx.chooseImage({
+      count: 3,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      complete: (res) => {
+        this.setData({
+          previewImages: res.tempFilePaths
+        })
+      },
+    })
+  },
+
+  previewImage(event) {
+    const target = event.currentTarget;
+    const src = target.dataset.src;
+    wx.previewImage({
+      current: src,
+      urls: [src]
+    })
+  },
+  
+  uploadImage(callback) {
+    const previewImages = this.data.previewImages;
+    const images = [];
+
+    if (previewImages.length) {
+      let imageCount = previewImages.length;
+      for (let i = 0; i < imageCount; i++) {
+        db.uploadImage(previewImages[i]).then( result =>{
+          console.log(result)
+          images.push(result.fileID)
+          if (i === imageCount - 1) {
+            callback && callback(images)
+          }
+        }).catch(err => {
+          console.log("err", err);
+        })
+      }
+    } else {
+      callback && callback(images)
+    }
   },
 
   /**

@@ -22,7 +22,7 @@
     <view class="review-entry" bindtap="onTapReviewEntry">
         <view class="review-btn">
             <view class="review-title">评论</view>
-            <view class="review-count">{{prodcut.reviewCount}} 条评论</view>
+            <view class="review-count">{{product.reviewCount}} 条评论</view>
             <image class="review-arrow" src="/images/grey-arrow.png"></image>
         </view>
         <view class="review-preview">{{product.firstReview.content}}</view>
