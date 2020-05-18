@@ -1,4 +1,3 @@
-<!--components/product/product.wxml-->
 <view class="product-card">
     <image class="product-image" mode="widthFix" src="{{productIamge}}"></image>
     <view class="product-info">

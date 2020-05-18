@@ -99,6 +99,13 @@ Page({
       });
   },
 
+  onTapReviewEntry() {
+    const product = this.data.product;
+    wx.navigateTo({
+      url: `/pages/review/review?productId=${product._id}&price=${product.price}&name=${product.name}&image=${product.image}`,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

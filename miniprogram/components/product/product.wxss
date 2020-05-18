@@ -1,4 +1,3 @@
-/* components/product/product.wxss */
 .product-card {
   display: flex;
   align-items: center;
