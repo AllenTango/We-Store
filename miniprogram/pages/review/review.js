@@ -1,4 +1,7 @@
 // pages/review/review.js
+const db = require("../../utils/db.js");
+const util = require("../../utils/util.js");
+
 Page({
 
   /**
@@ -6,18 +9,7 @@ Page({
    */
   data: {
     product: {},
-    reviewList: [{
-      avatar: '/images/me-sel.png',
-      username: 'test1',
-      createTime: '2019/01/01',
-      content: 'test comment',
-    },
-    {
-      avatar: '/images/me-sel.png',
-      username: 'test2',
-      createTime: '2019/01/01',
-      content: 'test comment'
-    }],
+    reviewList: [],
   },
 
   /**
@@ -25,14 +17,31 @@ Page({
    */
   onLoad: function (options) {
     this.setProduct(options);
+    this.getReviews(options.productId);
   },
 
   setProduct(options) {
-    const { productId, name, price, image } = options;
-
+    const { name, price, image } = options;
     this.setData({
-      product: { productId, name, price, image },
+      product: { name, price, image },
     });
+  },
+  getReviews(productId) {
+    db.getReviews(productId).then(result => {
+      // console.log(result)
+      const data = result.data;
+
+      if (data.length) {
+        this.setData({
+          reviewList: data.map(review => {
+            review.createTime = util.formatTime(review.createTime, 'yyyy/MM/dd');
+            return review;
+          })
+        })
+      }
+      }).catch(err => {
+        console.log(err)
+      })
   },
   
   /**
@@ -46,7 +55,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.data.product.image)
   },
 
   /**

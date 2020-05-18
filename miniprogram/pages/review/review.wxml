@@ -1,5 +1,6 @@
 <!--pages/review/review.wxml-->
-<product product-image="{{product.image}}" product-name="{{product.name}}" product-price="{{product.price}}"></product>
+<product product-image="{{product.image}}" product-name="{{product.name}}" product-price="{{product.price}}">
+</product>
 
 <view class="review-list">
   <view class="review-title">{{reviewList.length}} 条评论</view>

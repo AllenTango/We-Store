@@ -1,5 +1,5 @@
 <view class="product-card">
-    <image class="product-image" mode="widthFix" src="{{productIamge}}"></image>
+    <image class="product-image" mode="widthFix" src="{{productIamge || '../../images/me-sel.png'}}"></image>
     <view class="product-info">
         <view class="product-name">{{productName}}</view>
         <view class="product-price">$ {{productPrice}}</view>
