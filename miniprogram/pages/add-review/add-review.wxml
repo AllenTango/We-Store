@@ -1,0 +1,13 @@
+<view class="product-card">
+    <image class="product-image" mode="widthFix" src="{{product.image}}"></image>
+    <view class="product-info">
+        <view class="product-name">{{product.name}}</view>
+        <view class="product-price">{{product.price}}</view>
+    </view>
+</view>
+
+<view class="review-content">
+    <textarea placeholder-class="review-placeholder" placeholder="你觉得如何..." maxlength="255" class="review-input" bindinput="onInput"></textarea>
+</view>
+
+<view class="review-button {{!reviewContent ? 'disable' : ''}}" bindtap="addReview">发送</view>

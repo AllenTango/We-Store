@@ -102,4 +102,22 @@ module.exports = {
         return {};
       });
   },
+  addReview(data) {
+    return util
+      .isAuthenticated()
+      .then(() => {
+        return wx.cloud.callFunction({
+          name: "addReview",
+          data,
+        });
+      })
+      .catch( err => {
+        console.log(err)
+        wx.showToast({
+          icon: "none",
+          title: "请先登录",
+        });
+        return {};
+      });
+  },
 };

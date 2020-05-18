@@ -27,7 +27,7 @@
       </view>
 
       <view class="order-opr">
-        <view class="order-btn">确认</view>
+        <navigator class="order-btn" url="/pages/add-review/add-review?productId={{item.productId}}&price={{item.price}}&name={{item.name}}&image={{item.image}}">评论</navigator>
         <view class="order-count">x{{ item.count }}</view>
       </view>
     </view>
