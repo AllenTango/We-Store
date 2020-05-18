@@ -28,13 +28,14 @@ Page({
   },
   getReviews(productId) {
     db.getReviews(productId).then(result => {
-      // console.log(result)
+      console.log(result)
       const data = result.data;
 
       if (data.length) {
         this.setData({
           reviewList: data.map(review => {
             review.createTime = util.formatTime(review.createTime, 'yyyy/MM/dd');
+            review.images = review.images ? review.images.split(';') : [];
             return review;
           })
         })
@@ -42,6 +43,16 @@ Page({
       }).catch(err => {
         console.log(err)
       })
+  },
+
+  previewImage(event) {
+    let target = event.currentTarget;
+    let src = target.dataset.src;
+
+    wx.previewImage({
+      current: src,
+      urls: [src]
+    })
   },
   
   /**
