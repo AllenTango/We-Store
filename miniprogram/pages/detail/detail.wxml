@@ -12,11 +12,11 @@
     <view class="advantage-list">
         <view class="advantage-item">
             <image class="advantage-icon" src="/images/check-yellow.png"></image>
-            <view class="advantage-text">free return in 7 days.</view>
+            <view class="advantage-text">7 天内免费退换</view>
         </view>
         <view class="advantage-item">
             <image class="advantage-icon" src="/images/check-yellow.png"></image>
-            <view class="advantage-text">get it within 24 hours.</view>
+            <view class="advantage-text">24小时内配送</view>
         </view>
     </view>
     <view class="review-entry" bindtap="onTapReviewEntry">
